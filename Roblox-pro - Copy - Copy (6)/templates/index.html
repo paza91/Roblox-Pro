@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Roblox Pro</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+💜 Roblox Pro
+</div>
+
+<div class="header-icons">
+
+<button class="icon-btn">
+🔍
+</button>
+
+<a href="/spin">
+    <button class="spin-icon">
+    🎡
+    </button>
+    </a>
+
+<a href="/cart">
+<button class="icon-btn">
+🛒
+</button>
+
+<a href="/redeem">
+
+    <button class="icon-btn">
+    🎁
+    </button>
+    
+    </a>
+</a>
+
+<div class="profile-menu">
+
+<button class="profile-btn" onclick="toggleMenu()">
+👤
+</button>
+
+<div class="dropdown" id="dropdown">
+
+{% if session.get("user") %}
+
+<div class="user-name">
+
+👤 {{ session["user"] }}
+
+</div>
+
+<a href="/logout">
+
+🚪 خروج از حساب
+
+</a>
+
+{% else %}
+
+<a href="/login">
+
+🔑 ورود
+
+</a>
+
+<a href="/register">
+
+📝 ثبت نام
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="game-card">
+
+<div class="game-image">
+🌱
+</div>
+
+<h1>
+Grow a Garden 2
+</h1>
+
+<p>
+فروش خدمات و آیتم های Grow a Garden 2
+</p>
+
+<a href="/shop">
+
+<button class="shop-btn">
+
+ورود به فروشگاه
+
+</button>
+
+</a>
+
+</div>
+
+</section>
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("dropdown");
+
+menu.style.display =
+menu.style.display==="block"
+?
+"none"
+:
+"block";
+
+}
+
+window.onclick=function(e){
+
+if(!e.target.closest(".profile-menu")){
+
+document.getElementById("dropdown").style.display="none";
+
+}
+
+}
+
+</script>
+
+</div>
+
+</body>
+
+</html>

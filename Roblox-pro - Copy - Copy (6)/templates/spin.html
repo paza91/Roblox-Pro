@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+<meta charset="UTF-8">
+<title>Spin</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🎡 Spin Center
+</div>
+
+<a href="/">
+<button class="icon-btn">
+🏠
+</button>
+</a>
+
+</header>
+
+
+<section class="hero">
+
+<div class="game-card">
+
+<h1>🎡 چرخونه شانس</h1>
+
+<h2>
+💜 تعداد اسپین‌های شما:
+{{ spin }}
+</h2>
+
+<br>
+
+<form action="/spin_now" method="POST">
+
+    <button class="shop-btn">
+        🎡 چرخش
+    </button>
+
+</form>
+
+{% if spin_message %}
+
+<br>
+
+<div class="code-card">
+
+<h2>
+{{ spin_message }}
+</h2>
+
+</div>
+
+{% endif %}
+
+
+{% if reward %}
+
+<br>
+
+<div class="code-card">
+
+<h2>
+🎉 تبریک!
+</h2>
+
+<p>
+شما برنده شدید:
+</p>
+
+<h2>
+💜 {{ reward }}
+</h2>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</section>
+
+</body>
+
+</html>

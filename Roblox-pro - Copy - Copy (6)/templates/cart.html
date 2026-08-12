@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>سبد خرید</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="logo">
+🛒 سبد خرید
+</div>
+
+
+<a href="/seeds">
+
+<button class="icon-btn">
+⬅️ ادامه خرید
+</button>
+
+</a>
+
+</header>
+
+
+
+
+<section class="shop-page">
+
+
+<h1>
+🛒 سبد خرید شما
+</h1>
+
+
+
+
+<div class="seed-container">
+
+
+{% for item in items %}
+
+
+<div class="seed-card">
+
+
+<div class="seed-image">
+🌱
+</div>
+
+
+<h2>
+{{ item.name }}
+</h2>
+
+
+<p>
+قیمت: {{ item.price }} تومان
+</p>
+
+
+<p>
+تعداد: {{ item.count }}
+</p>
+
+
+
+<a href="/plus/{{ item.name }}">
+
+<button class="buy-btn">
+➕
+</button>
+
+</a>
+
+
+
+<a href="/minus/{{ item.name }}">
+
+<button class="buy-btn">
+➖
+</button>
+
+</a>
+
+
+
+<br><br>
+
+
+
+<a href="/remove/{{ item.name }}">
+
+<button class="remove-btn">
+🗑 حذف
+</button>
+
+</a>
+
+
+
+</div>
+
+
+{% else %}
+
+
+<h2>
+سبد خرید خالی است
+</h2>
+
+
+{% endfor %}
+
+
+</div>
+
+
+<div class="discount-card">
+
+    <h2>
+    🎟️ کد تخفیف
+    </h2>
+    
+    
+    <form action="/apply_discount" method="POST">
+    
+    <input 
+    name="discount_code"
+    placeholder="کد تخفیف را وارد کنید"
+    required
+    >
+    
+    
+    <button class="buy-btn">
+    اعمال کد
+    </button>
+    
+    
+    </form>
+    
+</div>
+
+
+<h2 class="total">
+    {% if discount_message %}
+
+<h3 style="color:#b46cff;">
+{{ discount_message }}
+</h3>
+
+{% endif %}
+مجموع:
+{{ total }} تومان
+
+</h2>
+
+
+
+<br>
+
+
+<a href="/checkout">
+
+<button class="buy-btn">
+
+💳 ادامه برای پرداخت
+
+</button>
+
+</a>
+
+
+
+
+</section>
+
+
+
+</body>
+
+</html>

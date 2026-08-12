@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Grow a Garden 2 Shop</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="logo">
+💜 Roblox Pro
+</div>
+
+
+<div class="header-icons">
+
+<a href="/">
+<button class="icon-btn">🏠</button>
+</a>
+
+
+<div class="profile-menu">
+
+<button class="profile-btn" onclick="toggleMenu()">
+👤
+</button>
+
+
+<div class="dropdown" id="dropdown">
+
+<a href="/login">🔑 ورود</a>
+
+<a href="/register">📝 ثبت نام</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+
+<section class="shop-page">
+
+
+<h1>
+🛒 Grow a Garden 2
+</h1>
+
+
+<p class="subtitle">
+انتخاب دسته بندی
+</p>
+
+
+
+<div class="category-buttons">
+
+
+<a href="/seeds">
+
+<button class="category-btn">
+
+🌱 Seeds
+
+</button>
+
+</a>
+
+
+
+<a href="#">
+
+<button class="category-btn">
+
+🐾 Pets
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("dropdown");
+
+
+if(menu.style.display==="block"){
+
+menu.style.display="none";
+
+}
+
+else{
+
+menu.style.display="block";
+
+}
+
+}
+
+
+window.onclick=function(e){
+
+if(!e.target.closest(".profile-menu")){
+
+document.getElementById("dropdown").style.display="none";
+
+}
+
+}
+
+</script>
+
+
+</body>
+
+</html>

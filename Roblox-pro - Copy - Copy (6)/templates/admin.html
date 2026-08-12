@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>پنل مدیریت Roblox Pro</title>
+
+
+<style>
+
+body{
+
+    direction:rtl;
+    font-family:tahoma;
+    background:#111;
+    color:white;
+    padding:30px;
+
+}
+
+
+h1{
+
+    color:#b45cff;
+
+}
+
+
+.box{
+
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:25px;
+
+}
+
+
+input{
+
+    width:90%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:none;
+
+}
+
+
+
+button{
+
+    background:#a855f7;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    background:#9333ea;
+
+}
+
+
+
+.code-card{
+
+    background:#333;
+    padding:15px;
+    border-radius:12px;
+    margin:10px 0;
+
+}
+
+
+.delete{
+
+    background:#ef4444;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:8px;
+    color:white;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<h1>
+💜 پنل مدیریت Roblox Pro
+</h1>
+
+
+
+<div class="box">
+
+
+<h2>
+🎁 ساخت کد جدید
+</h2>
+
+
+<form action="/add_code" method="POST">
+
+
+<input 
+name="code"
+placeholder="اسم کد (مثلا ROBLOX_PRO)"
+required
+>
+
+
+<br>
+
+
+<input 
+name="reward"
+placeholder="جایزه کد (مثلا 100 PRO COIN)"
+required
+>
+
+
+<br>
+
+
+<button>
+➕ اضافه کردن کد
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+📜 لیست کدها
+</h2>
+
+
+{% for code in codes %}
+
+
+<div class="code-card">
+
+
+<b>
+{{ code.code }}
+</b>
+
+
+<br>
+
+
+🎁 جایزه:
+{{ code.reward }}
+
+
+<br><br>
+
+
+<a class="delete" href="/delete_code/{{code.id}}">
+❌ حذف
+</a>
+
+<br><br>
+
+ارسال شد ✅
+</a>
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+🛒 سفارش ها
+</h2>
+
+
+{% for order in orders %}
+
+
+<div class="code-card">
+
+
+👤 {{order.customer_name}}
+
+<br>
+
+🎮 {{order.roblox_username}}
+
+<br>
+
+📱 {{order.phone}}
+
+<br>
+
+🛒 {{order.products}}
+
+<br>
+
+💰 {{order.total_price}}
+
+<br><br>
+
+<a class="delete" href="/delete_order/{{order.id}}">
+ارسال شد ✅
+</a>
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+<div class="box">
+
+    <h2>
+    🎟️ اضافه کردن کد تخفیف
+    </h2>
+    
+    
+    <form action="/add_discount" method="POST">
+    
+    
+    <input 
+    name="code"
+    placeholder="اسم کد تخفیف (مثلا PRO40)"
+    required
+    >
+    
+    
+    <br>
+    
+    
+    <input 
+    name="amount"
+    type="number"
+    placeholder="مبلغ تخفیف (مثلا 40000)"
+    required
+    >
+    
+    
+    <br>
+    
+    
+    <button>
+    ➕ اضافه کردن کد تخفیف
+    </button>
+    
+    
+    </form>
+    
+    
+    </div>
+
+
+    <div class="box">
+
+        <h2>
+        🎡 Gift Spin
+        </h2>
+        
+        
+        <form action="/add_spin" method="POST">
+        
+        
+        <input 
+        name="roblox_username"
+        placeholder="آیدی روبلاکس"
+        required
+        >
+        
+        
+        <br>
+        
+        
+        <input 
+        name="amount"
+        type="number"
+        placeholder="تعداد اسپین"
+        required
+        >
+        
+        
+        <br>
+        
+        
+        <button>
+        ➕ اضافه کردن Spin
+        </button>
+        
+        
+        </form>
+        
+        </div>
+
+        <div class="box">
+
+            <h2>
+            ➖ کم کردن Spin
+            </h2>
+            
+            <form action="/remove_spin" method="POST">
+            
+            <input 
+            name="roblox_username"
+            placeholder="آیدی روبلاکس"
+            required
+            >
+            
+            <br>
+            
+            <input 
+            name="amount"
+            type="number"
+            placeholder="تعداد اسپین"
+            required
+            >
+            
+            <br>
+            
+            <button>
+            ➖ کم کردن Spin
+            </button>
+            
+            </form>
+            
+            </div>
+
+            <div class="box">
+
+                <h2>➕ اضافه کردن آیتم</h2>
+                
+                <form action="/add_item" method="POST">
+                
+                <input
+                name="name"
+                placeholder="اسم آیتم"
+                required
+                >
+                
+                <br>
+                
+                <input
+                name="price"
+                type="number"
+                placeholder="قیمت"
+                required
+                >
+                
+                <br>
+                
+                <select name="category">
+                    <option value="Seed">Seed</option>
+                    <option value="Pet">Pet</option>
+                </select>
+                
+                <br><br>
+                
+                <input
+                name="image"
+                placeholder="لینک عکس"
+                required
+                >
+                
+                <br><br>
+                
+                <button>
+                ➕ اضافه کردن آیتم
+                </button>
+                
+                </form>
+                
+                </div>
+
+                <div class="box">
+
+                    <h2>
+                    📋 لیست آیتم‌ها
+                    </h2>
+                    
+                    
+                    {% for item in items %}
+                    
+                    
+                    <div class="code-card">
+                    
+                    
+                    {% if item.image %}
+                    
+                    <img src="{{ item.image }}" width="80">
+                    
+                    <br>
+                    
+                    {% endif %}
+                    
+                    
+                    <b>
+                    {{ item.name }}
+                    </b>
+                    
+                    
+                    <br>
+                    
+                    
+                    💰 قیمت:
+                    {{ item.price }} تومان
+                    
+                    
+                    <br>
+                    
+                    
+                    📂 دسته:
+                    {{ item.category }}
+                    
+                    
+                    <br><br>
+                    
+                    
+                    <a class="delete" href="/delete_item/{{ item.id }}">
+                    ❌ حذف
+                    </a>
+                    
+                    
+                    </div>
+                    
+                    
+                    {% endfor %}
+                    
+                    
+                    </div>
+
+        <div class="box">
+
+            <h2>
+            🎁 جایزه‌های Spin
+            </h2>
+            
+            <form action="/add_spin_reward" method="POST">
+            
+            <input
+            name="reward"
+            placeholder="اسم جایزه"
+            required
+            >
+            
+            <br>
+            
+            <input
+            name="chance"
+            type="number"
+            placeholder="شانس"
+            required
+            >
+            
+            <br>
+            
+            <button>
+            ➕ اضافه کردن جایزه
+            </button>
+            
+            </form>
+            
+            </div>
+
+            <div class="box">
+
+                <h2>
+                📋 لیست جایزه‌های Spin
+                </h2>
+                
+                
+                {% for reward in spin_rewards %}
+                
+                
+                <div class="code-card">
+                
+                
+                🎁 جایزه:
+                {{ reward.reward }}
+                
+                
+                <br>
+                
+                
+                🎯 شانس:
+                {{ reward.chance }}٪
+                
+                
+                <br><br>
+                
+                
+                <a class="delete" href="/delete_spin_reward/{{reward.id}}">
+                ❌ حذف
+                </a>
+                
+                
+                </div>
+                
+                
+                {% endfor %}
+                
+                
+                </div>
+    
+    
+    
+    
+    
+    <div class="box">
+    
+    
+    <h2>
+    📋 لیست کد تخفیف ها
+    </h2>
+    
+    
+    {% for discount in discounts %}
+    
+    
+    <div class="code-card">
+    
+    
+    <b>
+    {{ discount.code }}
+    </b>
+    
+    
+    <br>
+    
+    
+    💰 مبلغ تخفیف:
+    {{ discount.amount }} تومان
+    
+    
+    <br><br>
+    
+    
+    <a class="delete" href="/delete_discount/{{discount.id}}">
+    ❌ حذف
+    </a>
+    
+    
+    </div>
+    
+    
+    {% endfor %}
+    
+    
+    </div>
+
+<div class="box">
+
+
+    <h2>
+    🎁 درخواست‌های Redeem
+    </h2>
+    
+    
+    {% for claim in claims %}
+    
+    
+    <div class="code-card">
+    
+    
+    👤 نام:
+    {{ claim.username }}
+    
+    
+    <br>
+    
+    
+    🎮 یوزرنیم روبلاکس:
+    {{ claim.roblox_username }}
+    
+    
+    <br>
+    
+    
+    📱 شماره:
+    {{ claim.phone }}
+    
+    
+    <br>
+    
+    
+    🎁 کد:
+    {{ claim.code }}
+    
+    
+    <br>
+    
+    
+    🏆 جایزه:
+    {{ claim.reward }}
+    
+    <br><br>
+
+    <a class="delete" href="/delete_redeem/{{claim.id}}">
+        ارسال شد ✅
+        </a>
+
+    
+    </div>
+    
+    
+    {% endfor %}
+    
+    
+    </div>
+
+<div class="box">
+
+    <h2>🎡 درخواست‌های Spin</h2>
+    
+    {% for spin in spin_claims %}
+        
+    <div class="code-card">
+        
+    🎮 آیدی روبلاکس:
+    {{ spin.roblox_username }}
+        
+    <br>
+        
+    🎁 جایزه:
+    {{ spin.reward }}
+        
+    <br><br>
+        
+    <a class="delete" href="/delete_spin/{{ spin.id }}">
+    ارسال شد ✅
+    </a>
+        
+    </div>
+        
+    {% endfor %}
+        
+    </div>
+        
+    </body>
+
+</html>
+

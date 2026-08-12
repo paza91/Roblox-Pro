@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ثبت نام</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="avatar-circle">
+        👤
+    </div>
+
+    <h1>Roblox Pro</h1>
+
+    <p class="subtitle">
+        ساخت حساب کاربری
+    </p>
+
+    {% if error %}
+    <div class="error-box">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+
+        <input
+        type="text"
+        name="name"
+        placeholder="نام و نام خانوادگی"
+        required>
+
+        <input
+        type="email"
+        name="email"
+        placeholder="ایمیل"
+        required>
+
+        <input
+        type="text"
+        name="phone"
+        placeholder="شماره تماس"
+        required>
+
+        <input
+        type="text"
+        name="roblox_username"
+        placeholder="یوزرنیم روبلاکس"
+        required>
+
+        <input
+        type="password"
+        name="password"
+        placeholder="رمز عبور"
+        required>
+
+        <button class="buy-btn">
+
+            ثبت نام
+
+        </button>
+
+    </form>
+
+    <div class="bottom-text">
+
+        قبلاً ثبت نام کردی؟
+
+        <a href="/login">
+
+            ورود
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

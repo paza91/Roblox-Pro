@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>ورود</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="avatar-circle">
+        👤
+    </div>
+
+    <h1>Roblox Pro</h1>
+
+    <p class="subtitle">
+
+        ورود به حساب کاربری
+
+    </p>
+
+    {% if error %}
+
+    <div class="error-box">
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+    <form method="POST">
+
+        <input
+        type="email"
+        name="email"
+        placeholder="ایمیل"
+        required>
+
+        <input
+        type="password"
+        name="password"
+        placeholder="رمز عبور"
+        required>
+
+        <button class="buy-btn">
+
+            ورود
+
+        </button>
+
+    </form>
+
+    <div class="bottom-text">
+
+        حساب نداری؟
+
+        <a href="/register">
+
+            ثبت نام
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
